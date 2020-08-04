@@ -1,0 +1,30 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/mpt/github_mpt/src/A-Star/src/Astar_search.cpp
+Astar_search.h
+/home/mpt/github_mpt/src/A-Star/src/Astar_search.h
+
+/home/mpt/github_mpt/src/A-Star/src/Astar_search.h
+node.h
+/home/mpt/github_mpt/src/A-Star/src/node.h
+map
+-
+vector
+-
+iostream
+-
+
+/home/mpt/github_mpt/src/A-Star/src/node.h
+eigen3/Eigen/Core
+-
+cfloat
+-
+map
+-
+

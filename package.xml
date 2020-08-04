@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<package format="2">
+    <name>AStar</name>
+    <version>1.0.0</version>
+    <description>The A-star package</description>
+
+    <maintainer email="mapengtao90@163.com">mapengtao</maintainer>
+    <autor email="mapengtao90@163.com">mapengtao</autor>
+
+    <buildtool_depend>catkin</buildtool_depend>
+</package>
