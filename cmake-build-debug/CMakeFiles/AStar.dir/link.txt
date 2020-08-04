@@ -1,1 +1,0 @@
-/usr/bin/c++  -g  -rdynamic CMakeFiles/AStar.dir/src/main.cpp.o CMakeFiles/AStar.dir/src/Astar_search.cpp.o  -o AStar 
