@@ -14,7 +14,6 @@ struct GridNode {
   double hScore;
   double fScore;
   GridNodePtr cameFrom;
-//  std::multimap<double, GridNodePtr>::iterator nodeMapIt;
 
   GridNode(Eigen::Vector2i coord_) {
     id       = 0;

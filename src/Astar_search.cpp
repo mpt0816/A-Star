@@ -123,22 +123,21 @@ void AstarPathFinder::pathSearch(const Eigen::Vector2i &start_pt,
           neighborPtr->cameFrom = currentPtr;
           openSet_.insert(std::make_pair<double, GridNodePtr>(neighborPtr->fScore, neighborPtr));
         } else if (neighborPtr->id == 1) {
-          neighborPtr->id = -1;
           double gScore_new = currentPtr->gScore + edgeSets[i];
           double fScore_new = gScore_new + neighborPtr->hScore;
-          if (fScore_new < neighborPtr->fScore) {
+          if (gScore_new < neighborPtr->gScore) {
             neighborPtr->gScore = gScore_new;
             neighborPtr->fScore = fScore_new;
             neighborPtr->cameFrom = currentPtr;
             openSet_.insert(std::make_pair<double, GridNodePtr>(neighborPtr->fScore, neighborPtr));
           }
         } else if (neighborPtr->id == -1){
-          for (std::multimap<double, GridNodePtr>::iterator itr = openSet_.begin(); itr != openSet_.end(); ++itr) {
-            if (itr->first  == neighborPtr->fScore &&
-                itr->second == neighborPtr) {
-              openSet_.erase(itr);
-            }
-          }
+//          for (std::multimap<double, GridNodePtr>::iterator itr = openSet_.begin(); itr != openSet_.end(); ++itr) {
+//            if (itr->first  == neighborPtr->fScore &&
+//                itr->second == neighborPtr) {
+//              openSet_.erase(itr);
+//            }
+//          }
         }
       }
     }
