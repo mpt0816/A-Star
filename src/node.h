@@ -1,29 +1,91 @@
-#pragma once
+#ifndef ASTAR_SRC_NODE_H_
+#define ASTAR_SRC_NODE_H_
 
-#include <eigen3/Eigen/Core>
 #include <cfloat>
-#include <map>
+#include <string>
 
-struct GridNode;
-typedef GridNode* GridNodePtr;
+namespace astar{
 
-struct GridNode {
-  int id;                 // 1 --> open set, -1 --> closed set
-  Eigen::Vector2i coord;
+struct Node {
+  int x;
+  int y;
   double gScore;
   double hScore;
   double fScore;
-  GridNodePtr cameFrom;
+  Node* cameFrom;
+  std::string index;
 
-  GridNode(Eigen::Vector2i coord_) {
-    id       = 0;
-    coord    = coord_;
-    gScore   = DBL_MAX;
-    hScore   = DBL_MAX;
-    fScore   = gScore + hScore;
-    cameFrom = NULL;
+  Node(const int _x, const int _y) 
+      : x(_x)
+      , y(_y)
+      , gScore(0.0)
+      , hScore(0.0)
+      , fScore(0.0)
+      , cameFrom(NULL) {
+        index = ComputeIndex(x, y);
+      }
+  Node(const int _x, const int _y, Node* ptr)
+      : x(_x)
+      , y(_y)
+      , gScore(0.0)
+      , hScore(0.0)
+      , fScore(0.0)
+      , cameFrom(ptr) {
+    index = ComputeIndex(x, y);
+  }
+
+  void SetgScore(const double g) {
+    gScore = g;
+    fScore = gScore + hScore;
+  }
+
+  void SethScore(const double h) {
+    hScore = h;
+    fScore = gScore + hScore;
+  }
+
+  void SetfScore(const double f) {
+    fScore = f;
+  }
+
+  int GetX() const {
+    return x;
+  }
+
+  int GetY() const {
+    return y;
+  }
+
+  double GetgScore() const {
+    return gScore;
+  }
+
+  double GethScore() const {
+    return hScore;
+  }
+
+  double GetfScore() const {
+    return fScore;
+  }
+
+  bool operator==(const Node& node) const {
+    return (x == node.x && y == node.y);
+  }
+
+  std::string GetIndex() const {
+    return index;
+  }
+
+  std::string ComputeIndex(const int x, const int y) {
+    return std::to_string(x) + std::to_string(y);
   }
 
 };
+
+typedef Node* NodePtr;
+
+} // namespace astar
+
+#endif // ASTAR_SRC_NODE_H_
 
 
