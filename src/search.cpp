@@ -7,16 +7,16 @@ namespace astar {
 
 AStar::AStar() {
   terminaterPtr_ = nullptr;
-  map_max_x_ = std::numeric_limits<int>::epsilon();
-  map_max_y_ = std::numeric_limits<int>::epsilon();
+  map_max_x_ = std::numeric_limits<int>::lowest();
+  map_max_y_ = std::numeric_limits<int>::lowest();
 }
 
 void AStar::InitGridMap(const Eigen::MatrixXd& map) {
   map_max_x_ = map.rows() - 1;
   map_max_y_ = map.cols() - 1;
-  gridmap_ = new (double* [map.rows()]);
+  gridmap_ = new double* [map.rows()];
   for (int i = 0; i < map.rows(); ++i) {
-    gridmap_[i] = new (double [map.cols()]);
+    gridmap_[i] = new double [map.cols()];
   }
   for (int i = 0; i <= map_max_x_; ++i) {
     for (int j = 0; j <= map_max_y_; ++j) {
@@ -55,6 +55,7 @@ void AStar::PathSearch(
       } else {
         if (itr->second->GetfScore() > next_node->GetfScore()) {
           itr->second->SetfScore(next_node->GetfScore());
+          itr->second->SetCameFrom(current_node);
           NodePtr temp_itr = open_pq_.top();
           open_pq_.pop();
           open_pq_.emplace(temp_itr);

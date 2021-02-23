@@ -48,6 +48,10 @@ struct Node {
     fScore = f;
   }
 
+  void SetCameFrom(Node* ptr) {
+    cameFrom = ptr;
+  }
+
   int GetX() const {
     return x;
   }
@@ -77,7 +81,7 @@ struct Node {
   }
 
   std::string ComputeIndex(const int x, const int y) {
-    return std::to_string(x) + std::to_string(y);
+    return std::to_string(x) + "_" + std::to_string(y);
   }
 
 };
